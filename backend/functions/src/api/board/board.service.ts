@@ -1,4 +1,6 @@
 import { limits } from "../../helpers/dictionary";
+import { randomValueBoard } from "../../helpers/functions-helpers";
+import { repeatedElements } from "../../helpers/board-validation";
 
 export const generateBoard = () => {
     const initialValues = [
@@ -24,9 +26,10 @@ export const generateBoard = () => {
     },
     ]
     initialValues.forEach(itemFather => {
-        const {min, max} = limits(itemFather.label);
-        const newValues = Array(5).map(() => {
-            return  Math.floor(Math.random() * ((max+1) - min)) + min;
+        const newValues = Array(5).map((item,index,arrayValue) => {
+           const value = randomValueBoard(itemFather.label);
+           
+           return repeatedElements(arrayValue,value,itemFather.label)
         });
         return {...itemFather, values: newValues}
     })

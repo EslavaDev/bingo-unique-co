@@ -1,3 +1,5 @@
+import { randomValueBoard } from "./functions-helpers";
+
 export const boardValidation = (array: any) => {
   let status;
   let msj;
@@ -15,11 +17,11 @@ const emptySquare = (array: any) => {
 };
 
 //valida si los numeros no estan repetidos
-const repeatedElements = (repeatedArray: any[], value: number) => {
+export const repeatedElements: any  = (repeatedArray: any[], value: number, label: string) => {
     const validation = repeatedArray.some((element) => element === value);
-    if (validation) {
+    if (!validation) {
         return value;
     }
-    const newValue= 
-    return 
+    const newValue= randomValueBoard(label);
+    return repeatedElements(repeatedArray, newValue, label);
 };
