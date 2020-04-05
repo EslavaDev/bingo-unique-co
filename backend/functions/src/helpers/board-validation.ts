@@ -1,6 +1,7 @@
 export const boardValidation = (array: any) => {
   let status;
   let msj;
+  const temp = array.map((item: any) => {});
 
   return { booleano: true, msj: "" };
 };
@@ -14,4 +15,6 @@ const emptySquare = (array: any) => {
 };
 
 //valida si los numeros no estan repetidos
-const repeatedElements = (array: any) => {};
+const repeatedElements = (repeatedArray: any[], value: number) => {
+  return;
+};
