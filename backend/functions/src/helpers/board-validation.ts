@@ -16,5 +16,10 @@ const emptySquare = (array: any) => {
 
 //valida si los numeros no estan repetidos
 const repeatedElements = (repeatedArray: any[], value: number) => {
-  return;
+    const validation = repeatedArray.some((element) => element === value);
+    if (validation) {
+        return value;
+    }
+    const newValue= 
+    return 
 };
