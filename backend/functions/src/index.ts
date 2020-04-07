@@ -20,4 +20,4 @@ app.use(cors());
 
 router(app);
 
-export const twitterClone = functions.https.onRequest(app);
+export const bingoUnique = functions.https.onRequest(app);
