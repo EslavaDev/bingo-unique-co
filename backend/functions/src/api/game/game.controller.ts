@@ -10,3 +10,7 @@ export const win = (req: Request, res: Response) => {
     const {data} = req.body;
     return res.status(200).json({data})
 }
+
+export const create = () => {
+    console.log('h')
+}

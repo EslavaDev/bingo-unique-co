@@ -4,13 +4,13 @@ import * as express from 'express';
 import * as cors from 'cors';
 import {router} from './routes'
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
-admin.initializeApp(functions.config().firebase);
+var serviceAccount = require("./config/env.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://bingo-unique-co.firebaseio.com"
+});
+admin.firestore().settings({ timestampsInSnapshots: true })
 
 const app = express();
 app.use(express.json());

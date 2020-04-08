@@ -2,7 +2,7 @@ import { randomValueBoard, randomValueGame } from "./functions-helpers";
 
 //valida si el subarreglo de label N en su posicion 2 esta vacio
 export const emptySpace = (column: any[], label: string) => {
-  if (label != "N") {
+  if (label !== "N") {
     return column;
   }
   console.log(label)
