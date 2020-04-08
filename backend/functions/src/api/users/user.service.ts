@@ -1,4 +1,6 @@
 import {firestore} from 'firebase-admin'
+import {sign} from 'jsonwebtoken'
+import { SEED_AUTH, SEED_EXPIRY } from '../../config/env';
 
 export class UserService {
     async registerUser (username: string, email: string, password: string) {
@@ -40,7 +42,10 @@ export class UserService {
                 throw Error('Login not found')
             }
             delete result.password;
-            return result;
+            const token = sign({
+                user: result,
+              }, SEED_AUTH, { expiresIn: SEED_EXPIRY })
+            return {user: result, token};
         } catch (error) {
             throw error
         }
