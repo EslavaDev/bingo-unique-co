@@ -24,4 +24,14 @@ export class BoardController {
       return res.status(400).json({ error: error, code: "REGISTER_NOT_FOUND" });
     }
   };
+  deleteBoard = async (req: Request, res: Response) => {
+    try {
+      const { idBoard } = req.query;
+      const { user }: any = req;
+      const data = await this.service.deleteBoard(idBoard, user);
+      return res.status(200).json({ data });
+    } catch (error) {
+      return res.status(400).json({ error: error, code: "REGISTER_NOT_FOUND" });
+    }
+  };
 }

@@ -75,4 +75,23 @@ export class BoardService {
             throw error
         }
     }
+    async deleteBoard (idBoard: string, user: any ) {
+        try {
+                const collection = firestore().collection(`tables`);
+            const docBoard = await collection.where('id', '==', idBoard).where('userId','==', user.uuid).get();
+            const docBoardEmpty = docBoard.empty;
+
+            if(docBoardEmpty){
+                throw Error('board not exist');
+            }
+            
+            await collection.doc(idBoard).delete();
+            return {
+                message: 'success'
+            }
+               
+        } catch (error) {
+            throw error
+        }
+    }
 }
