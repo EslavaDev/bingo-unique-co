@@ -5,15 +5,31 @@ export const horizontalWin = (board: any, fila: number) => {
 
     if (r == true || r == null) {
       counter++;
+    } else {
+      return false;
     }
-    if (counter == 5) {
-      return true;
-    }
-    return false;
   }
+  if (counter == 4) {
+    return true;
+  }
+  return false;
 };
 
-export const verticalWin = (board: any[], row: number) => {};
+export const verticalWin = (elemento: any[], col: number) => {
+  let counter = 0;
+  for (let i = 0; i < 5; i++) {
+    const r = elemento.values[i].active;
+    if (r == true || r == null) {
+      counter++;
+    } else {
+      return false;
+    }
+  }
+  if (counter == 4) {
+    return true;
+  }
+  return false;
+};
 
 export const leftDiagonalWin = (board: any) => {
   let counter = 0;
@@ -25,13 +41,14 @@ export const leftDiagonalWin = (board: any) => {
     }
   }
 
-  if (counter == 5) {
+  if (counter == 4) {
     return true;
   }
   return false;
 };
 export const rightDiagonalWin = (board: any[], row: number, key: number) => {};
 export const fullTableWin = (board: any[], fila: number) => {};
+export const fourSquaresWin = (board: any[], row: number) => {};
 
 const tabla = {
   data: [
