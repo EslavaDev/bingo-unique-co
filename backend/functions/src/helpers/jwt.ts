@@ -9,7 +9,7 @@ declare global {
     }
 }
 
-export const verifyToken = (req: Request & User, res: Response, next: NextFunction) => {
+export const verifyToken = (req: Request & any, res: Response, next: NextFunction) => {
   const token = req.headers.authorization;
   if(!token){
     return res.status(401).json({
@@ -18,7 +18,7 @@ export const verifyToken = (req: Request & User, res: Response, next: NextFuncti
         },
       });
   }
-  return verify(token, SEED_AUTH, (err, decoded: any) => {
+  return verify(token, SEED_AUTH, (err: any, decoded: any) => {
     if (err) {
       return res.status(401).json({
         ok: false,

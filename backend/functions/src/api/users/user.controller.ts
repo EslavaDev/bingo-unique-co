@@ -25,4 +25,19 @@ export class UserController {
             return res.status(400).json({error: error, code: 'LOGIN_NOT_FOUND'})
         }
     }
+    decode = async (req: Request, res: Response) => {
+    
+        try {
+            const {user}: any = req;
+            console.log(user)
+            const {uuid} = user;
+            if(!uuid){
+                throw Error('Token not found')
+            }
+            const data = await this.service.decodeToken(uuid);
+            return res.status(200).json({data})    
+        } catch (error) {
+            return res.status(400).json({error: error, code: 'LOGIN_NOT_FOUND'})
+        }
+    }
 }

@@ -50,4 +50,21 @@ export class UserService {
             throw error
         }
     }
+    async decodeToken (uuid: string) {
+        try {
+            const collection = firestore().collection('users');
+            const docsUsername = await collection.where('uuid', '==', uuid).get();
+            const docsUsernameEmpty = docsUsername.empty;
+            if(docsUsernameEmpty){
+                throw Error('Decode not found')
+            }
+            const resultArray: any[] = [] 
+            docsUsername.forEach(doc => resultArray.push(doc.data()));
+            const [result] = resultArray;
+            delete result.password;
+            return result;
+        } catch (error) {
+            throw error
+        }
+    }
 }
